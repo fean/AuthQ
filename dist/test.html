@@ -6,6 +6,7 @@
 </head>
 <body>
     <input type="button" value="Login" id="login-button" />
+    <input type="button" value="Logout" id="logout-button" />
     <div id="login-data" style="width: 450px; height: 125px; border: 1px solid black; margin: 40px 5px; padding: 5px;">
         <p>Expires in <span id="login-expire">0</span> seconds.</p>
         <p>Access token: <span id="login-access"></span></p>
@@ -34,6 +35,10 @@
         AuthQ.init('40000000');
         document.getElementById('login-button').onclick = function () {
             AuthQ.createLogin();
+        };
+        document.getElementById('logout-button').onclick = function () {
+            AuthQ.destroyLogin();
+            location.reload();
         };
     </script>
 </body>

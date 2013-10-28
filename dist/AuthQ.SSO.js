@@ -117,10 +117,15 @@
     destroyLogin: function () {
         var req = new XMLHttpRequest();
         if (req) {
-            req.open('GET', 'https://sso.solutions-net.nl/oauth/unauthorize', false);
-            req.send();
+            req.open('POST', 'https://sso.solutions-net.nl/oauth/unauthorize', false);
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            req.send('accessToken=' + AuthQ._data.AccessToken);
+            
             if (JSON.parse(req.responseText).Success) {
                 this._data = undefined;
+                localStorage.removeItem(AuthQ._appID + '_token');
+                localStorage.removeItem(AuthQ._appID + '_rtoken');
+                localStorage.removeItem(AuthQ._appID + '_expire');
                 return true;
             }
         }

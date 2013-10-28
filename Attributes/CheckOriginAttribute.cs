@@ -7,7 +7,7 @@ namespace AuthQ.SSO.Attributes
 {
     public class CheckOriginAttribute : ActionFilterAttribute
     {
-        public override void OnResultExecuting(ResultExecutingContext filterContext)
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             long trust;
             var origin = filterContext.HttpContext.Request.Headers["Origin"];
@@ -27,15 +27,18 @@ namespace AuthQ.SSO.Attributes
                         var token = string.IsNullOrEmpty(filterContext.HttpContext.Request.QueryString["accessToken"])
                                         ? filterContext.HttpContext.Request.Form["accessToken"]
                                         : filterContext.HttpContext.Request.QueryString["accessToken"];
+                        using (var c = new AuthQEntities())
+                        {
+                            var T = c.Tokens.FirstOrDefault(t => t.AccessToken == token)
+                            .Trust1.TrustedDomains.FirstOrDefault(d => d.Domain == origin);
 
-                        var T = new AuthQEntities().Tokens.FirstOrDefault(t => t.AccessToken == token)
-                                                   .Trust1.TrustedDomains.FirstOrDefault(d => d.Domain == origin);
-                        if (T != null)
-                            filterContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", T.Domain);
+                            if (T != null)
+                                filterContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", T.Domain);
+                        }
                     } catch(NullReferenceException ex) {}
                 }
             }
-            base.OnResultExecuting(filterContext);
+            base.OnActionExecuting(filterContext);
         }
     }
 }
