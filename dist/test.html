@@ -12,14 +12,14 @@
         <p>Refresh token: <span id="login-refresh"></span></p>
     </div>
     <script type="text/javascript">
-        AuthQ.subscribeHandler('success', function (e) {
+        AuthQ.onsuccess = function (e) {
             document.getElementById('login-expire').innerText = e.Expires;
             document.getElementById('login-access').innerText = e.AccessToken;
             document.getElementById('login-refresh').innerText = e.RefreshToken;
-        });
-        AuthQ.subscribeHandler('failure', function () {
+        };
+        AuthQ.onfailure = function () {
             alert('Failed!');
-        });
+        };
         AuthQ.init('40000000');
         document.getElementById('login-button').onclick = function () {
             AuthQ.createLogin();

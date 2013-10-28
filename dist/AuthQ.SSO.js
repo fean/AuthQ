@@ -3,9 +3,10 @@
     _initDone: false,
     _tokenAvailable: false,
     _data: undefined,
+    _retval: [false],
 
-    _failureHandlers: [],
-    _successHandlers: [],
+    onfailure: undefined,
+    onsuccess: undefined,
 
     init: function (trustid) {
         this._appID = trustid;
@@ -33,23 +34,28 @@
                                 var top = (screen.height - 500) / 2;
                                 var win = window.open(url, 'Login to your domain.',
                                     'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=600, height=500, top=' + top + ', left=' + left);
-                                if (window.focus()) win.focus();
+                                var t = setInterval(function () {
+                                    if (win.closed) {
+                                        if (AuthQ._retval[0]) {
+                                            AuthQ._data = JSON.parse(AuthQ._retval[1]);
+                                            AuthQ._retval = [false];
+                                            localStorage.setItem(AuthQ._appID + '_token', AuthQ._data.AccessToken);
+                                            localStorage.setItem(AuthQ._appID + '_rtoken', AuthQ._data.RefreshToken);
+                                            localStorage.setItem(AuthQ._appID + '_expire', new Date((new Date).getTime() + AuthQ._data.Expires * 1000).toUTCString());
+                                            clearInterval(t);
+                                            return AuthQ._fireEvent('success', AuthQ._data);
+                                        } else {
+                                            clearInterval(t);
+                                            return AuthQ._fireEvent('failure');
+                                        }
+                                    }
+                                }, 50);
                                 var eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
                                 var eventer = window[eventMethod];
                                 var messageEvent = eventMethod == 'attachEvent' ? 'onmessage' : 'message';
                                 eventer(messageEvent, function (e) {
-                                    if (e.data[0]) {
-                                        AuthQ._data = JSON.parse(e.data[1]);
-                                        localStorage.setItem(AuthQ._appID + '_token', AuthQ._data.AccessToken);
-                                        localStorage.setItem(AuthQ._appID + '_rtoken', AuthQ._data.RefreshToken);
-                                        localStorage.setItem(AuthQ._appID + '_expire', new Date((new Date).getTime() + AuthQ._data.Expires * 1000).toUTCString());
-                                        return AuthQ._fireEvent('success', AuthQ._data);
-                                    } else {
-                                        if (win.closed)
-                                            return AuthQ._fireEvent('failure');
-                                    }
+                                    setReturnValue(e.data);
                                 }, false);
-                                return null;
                             } else {
                                 return AuthQ._fireEvent('failure');
                             }
@@ -98,17 +104,13 @@
 
     _fireEvent: function (event, state) {
         if (event.toLowerCase() == "failure") {
-            if (this._failureHandlers.length < 1)
+            if (!this.onfailure)
                 return null;
-            for (var i in this._failureHandlers) {
-                state ? this._failureHandlers[i](state) : this._failureHandlers[i]();
-            }
+            state ? this.onfailure(state) : this.onfailure();
         } else if (event.toLowerCase() == "success") {
-            if (this._successHandlers.length < 1)
+            if (!this.onsuccess)
                 return null;
-            for (var i in this._successHandlers) {
-                state ? this._successHandlers[i](state) : this._successHandlers[i]();
-            }
+            state ? this.onsuccess(state) : this.onsuccess();
         }
     },
 
@@ -125,19 +127,6 @@
         return false;
     },
 
-    subscribeHandler: function (event, handler) {
-        if (event.toLowerCase() == "failure") {
-            this._failureHandlers.push(handler);
-        } else if (event.toLowerCase() == "success") {
-            this._successHandlers.push(handler);
-        }
-    },
-
-    destroyHandlers: function () {
-        this._failureHandlers = [];
-        this._successHandlers = [];
-    },
-
     isAuthorized: function () {
         return this._data ? true : false;
     },
@@ -145,4 +134,7 @@
     getAuthResponse: function () {
         return this._data ? this._data : null;
     }
+};
+window.setReturnValue = function (e) {
+    AuthQ._retval = e;
 };

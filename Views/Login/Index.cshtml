@@ -53,11 +53,4 @@
             $('.login-form').submit();
         }
     };
-    window.onunload = function (e) {
-        try {
-            window.opener.postMessage([false], '*');
-        } catch (e) {
-            alert('Error Message: ' + e.message);
-        }
-    };
 </script>

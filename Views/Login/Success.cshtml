@@ -18,11 +18,11 @@
         $.cookie('@OAuthConstants.AuthorzationParam', '@Model.AccessToken', { path: '/', expires: @Model.Expires });
         if (window.localStorage) {
             window.localStorage.setItem('refresh_token', '@Model.RefreshToken');
+            window.opener.postMessage([true, '{"AccessToken":"@Model.AccessToken","RefreshToken":"@Model.RefreshToken","Expires":@(Model.Expires - 10)}' ], '*');
         }
         $('a').click(doExec);
         setTimeout(doExec, 4000);
         function doExec() {
-            window.opener.postMessage([true, '{"AccessToken":"@Model.AccessToken","RefreshToken":"@Model.RefreshToken","Expires":@(Model.Expires - 10)}' ], '*');
             window.close();
         }
     });
