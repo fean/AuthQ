@@ -133,6 +133,33 @@
 
     getAuthResponse: function () {
         return this._data ? this._data : null;
+    },
+
+    api: {
+        user: {
+            getProfile: function () {
+                if (AuthQ.isAuthorized) {
+                    var req = new XMLHttpRequest();
+                    if (req) {
+                        req.open("POST", "https://sso.solutions-net.nl/Profile", false);
+                        req.send("accessToken=" + this._data.AccessToken);
+                        if (JSON.parse(req.responseText).Success) {
+                            return JSON.parse(req.responseText);
+                        }
+                    }
+                }
+                return null;
+            },
+            
+            getName: function() {
+                var r = AuthQ.api.user.getProfile();
+                return r.FullName == null ? r.Username : r.FullName;
+            },
+            
+            getMailAddress: function() {
+                return AuthQ.api.getProfile().MailAddress;
+            }
+        }
     }
 };
 window.setReturnValue = function (e) {

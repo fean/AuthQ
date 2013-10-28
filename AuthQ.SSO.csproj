@@ -99,6 +99,7 @@
     <Compile Include="Attributes\NoCacheAttribute.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OAuthController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Data\AuthQModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -137,6 +138,7 @@
     <Compile Include="Json\JsonpResult.cs" />
     <Compile Include="Models\JsonResponse.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Profile.cs" />
     <Compile Include="OAuth\AuthorizationHeader.cs" />
     <Compile Include="OAuth\Configuration\OAuthProviderCollection.cs" />
     <Compile Include="OAuth\Configuration\OAuthSection.cs" />

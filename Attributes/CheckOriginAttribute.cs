@@ -10,12 +10,26 @@ namespace AuthQ.SSO.Attributes
         {
             long trust;
             var origin = filterContext.HttpContext.Request.Headers["Origin"];
-            if (long.TryParse(filterContext.HttpContext.Request.QueryString["trustid"], out trust) && origin != null)
+            if (origin != null)
             {
-                var T = new AuthQEntities().Trusts.FirstOrDefault(t => t.TrustId == trust)
-                    .TrustedDomains.FirstOrDefault(d => d.Domain == origin);
-                if (T != null)
-                    filterContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", T.Domain);
+                if (long.TryParse(filterContext.HttpContext.Request.QueryString["trustid"], out trust))
+                {
+                    var T = new AuthQEntities().Trusts.FirstOrDefault(t => t.TrustId == trust)
+                                               .TrustedDomains.FirstOrDefault(d => d.Domain == origin);
+                    if (T != null)
+                        filterContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", T.Domain);
+                }
+                else if (!string.IsNullOrEmpty(filterContext.HttpContext.Request.QueryString["accessToken"]) || string.IsNullOrEmpty(filterContext.HttpContext.Request.Form["accessToken"]))
+                {
+                    var token = string.IsNullOrEmpty(filterContext.HttpContext.Request.QueryString["accessToken"])
+                                                 ? filterContext.HttpContext.Request.Form["accessToken"]
+                                                 : filterContext.HttpContext.Request.QueryString["accessToken"];
+
+                    var T = new AuthQEntities().Tokens.FirstOrDefault(t => t.AccessToken == token)
+                            .Trust1.TrustedDomains.FirstOrDefault(d => d.Domain == origin);
+                    if (T != null)
+                        filterContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", T.Domain);
+                }
             }
             base.OnResultExecuting(filterContext);
         }
