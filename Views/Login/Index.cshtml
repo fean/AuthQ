@@ -1,0 +1,63 @@
+﻿@model AuthQ.SSO.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+@{ Html.EnableClientValidation(); }
+@{ Html.BeginForm("index", "login", FormMethod.Post, new { @class = "login-form" }); }
+
+@if (!String.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p class="error">@Model.ErrorMessage</p>
+}
+
+<h2>Login</h2>
+
+<div class="input-wrapper">
+    @Html.LabelFor(m => m.Username): @Html.TextBoxFor(m => m.Username)<br />
+    @Html.LabelFor(m => m.Password): @Html.PasswordFor(m => m.Password)<br />
+    @Html.LabelFor(m => m.RememberMe): @Html.CheckBoxFor(m => m.RememberMe)<br />
+</div>
+
+@Html.HiddenFor(m => m.RequestToken)
+@Html.HiddenFor(m => m.TrustId)
+@Html.HiddenFor(m => m.Challenge)
+
+<div class="button">
+    <p>Login</p>
+</div>
+
+@{ Html.EndForm(); }
+
+<div class="loader-backpanel">
+    <img class="loader" src="/Content/Images/loader.gif" />
+</div>
+
+<script type="text/javascript">
+    $('#Username').focus();
+    $('.button').click(function () {
+        doSubmit();
+    });
+    $('.login-form').keypress(function (e) {
+        if (e.which == 13) {
+            doSubmit();
+        }
+    });
+    var doSubmit = function () {
+        var form = $('.login-form');
+        form.validate();
+        if (form.valid()) {
+            $('.login-form').hide();
+            $('.loader-backpanel').show();
+            $('#Password').val(CryptoJS.SHA512($('#Password').val()));
+            $('.login-form').submit();
+        }
+    };
+    window.onunload = function (e) {
+        try {
+            window.opener.postMessage([false], '*');
+        } catch (e) {
+            alert('Error Message: ' + e.message);
+        }
+    };
+</script>

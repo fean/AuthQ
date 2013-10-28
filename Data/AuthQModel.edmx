@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AuthQModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AuthQModelStoreContainer">
+          <EntitySet Name="Login" EntityType="AuthQModel.Store.Login" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TeamMember" EntityType="AuthQModel.Store.TeamMember" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Token" EntityType="AuthQModel.Store.Token" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Trust" EntityType="AuthQModel.Store.Trust" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TrustedDomain" EntityType="AuthQModel.Store.TrustedDomain" store:Type="Tables" store:Schema="dbo" store:Name="TrustedDomain">
+            <DefiningQuery>SELECT 
+      [TrustedDomain].[TrustId] AS [TrustId], 
+      [TrustedDomain].[Domain] AS [Domain]
+      FROM [dbo].[TrustedDomain] AS [TrustedDomain]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Login_TeamMember" Association="AuthQModel.Store.FK_Login_TeamMember">
+            <End Role="TeamMember" EntitySet="TeamMember" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_Login1" Association="AuthQModel.Store.FK_Token_Login1">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Token" EntitySet="Token" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_Trust" Association="AuthQModel.Store.FK_Token_Trust">
+            <End Role="Trust" EntitySet="Trust" />
+            <End Role="Token" EntitySet="Token" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrustedDomain_Trust" Association="AuthQModel.Store.FK_TrustedDomain_Trust">
+            <End Role="Trust" EntitySet="Trust" />
+            <End Role="TrustedDomain" EntitySet="TrustedDomain" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TeamProfile" Type="int" />
+        </EntityType>
+        <EntityType Name="TeamMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Rolename" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhotoURL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Speciality" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Motto_id" Type="int" Nullable="false" />
+          <Property Name="Group_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="AccessToken" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AccessToken" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="RefreshToken" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Expire" Type="datetime" Nullable="false" />
+          <Property Name="Trust" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Trust">
+          <Key>
+            <PropertyRef Name="TrustId" />
+          </Key>
+          <Property Name="TrustId" Type="bigint" Nullable="false" />
+          <Property Name="Secret" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TrustName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="returnUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'uniQ.dbo.TrustedDomain' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TrustedDomain">
+          <Key>
+            <PropertyRef Name="TrustId" />
+            <PropertyRef Name="Domain" />
+          </Key>
+          <Property Name="TrustId" Type="bigint" Nullable="false" />
+          <Property Name="Domain" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Login_TeamMember">
+          <End Role="TeamMember" Type="AuthQModel.Store.TeamMember" Multiplicity="0..1" />
+          <End Role="Login" Type="AuthQModel.Store.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeamMember">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="TeamProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_Login1">
+          <End Role="Login" Type="AuthQModel.Store.Login" Multiplicity="1" />
+          <End Role="Token" Type="AuthQModel.Store.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_Trust">
+          <End Role="Trust" Type="AuthQModel.Store.Trust" Multiplicity="0..1" />
+          <End Role="Token" Type="AuthQModel.Store.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trust">
+              <PropertyRef Name="TrustId" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="Trust" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrustedDomain_Trust">
+          <End Role="Trust" Type="AuthQModel.Store.Trust" Multiplicity="1" />
+          <End Role="TrustedDomain" Type="AuthQModel.Store.TrustedDomain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trust">
+              <PropertyRef Name="TrustId" />
+            </Principal>
+            <Dependent Role="TrustedDomain">
+              <PropertyRef Name="TrustId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AuthQModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AuthQEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Logins" EntityType="AuthQModel.Login" />
+          <EntitySet Name="TeamMembers" EntityType="AuthQModel.TeamMember" />
+          <EntitySet Name="Tokens" EntityType="AuthQModel.Token" />
+          <EntitySet Name="Trusts" EntityType="AuthQModel.Trust" />
+          <EntitySet Name="TrustedDomains" EntityType="AuthQModel.TrustedDomain" />
+          <AssociationSet Name="FK_Login_TeamMember" Association="AuthQModel.FK_Login_TeamMember">
+            <End Role="TeamMember" EntitySet="TeamMembers" />
+            <End Role="Login" EntitySet="Logins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_Login1" Association="AuthQModel.FK_Token_Login1">
+            <End Role="Login" EntitySet="Logins" />
+            <End Role="Token" EntitySet="Tokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_Trust" Association="AuthQModel.FK_Token_Trust">
+            <End Role="Trust" EntitySet="Trusts" />
+            <End Role="Token" EntitySet="Tokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrustedDomain_Trust" Association="AuthQModel.FK_TrustedDomain_Trust">
+            <End Role="Trust" EntitySet="Trusts" />
+            <End Role="TrustedDomain" EntitySet="TrustedDomains" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TeamProfile" Type="Int32" />
+          <NavigationProperty Name="TeamMember" Relationship="AuthQModel.FK_Login_TeamMember" FromRole="Login" ToRole="TeamMember" />
+          <NavigationProperty Name="Tokens" Relationship="AuthQModel.FK_Token_Login1" FromRole="Login" ToRole="Token" />
+        </EntityType>
+        <EntityType Name="TeamMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Rolename" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PhotoURL" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Speciality" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Motto_id" Type="Int32" Nullable="false" />
+          <Property Name="Group_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Logins" Relationship="AuthQModel.FK_Login_TeamMember" FromRole="TeamMember" ToRole="Login" />
+        </EntityType>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="AccessToken" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AccessToken" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="RefreshToken" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Expire" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Trust" Type="Int64" />
+          <NavigationProperty Name="Login" Relationship="AuthQModel.FK_Token_Login1" FromRole="Token" ToRole="Login" />
+          <NavigationProperty Name="Trust1" Relationship="AuthQModel.FK_Token_Trust" FromRole="Token" ToRole="Trust" />
+        </EntityType>
+        <EntityType Name="Trust">
+          <Key>
+            <PropertyRef Name="TrustId" />
+          </Key>
+          <Property Name="TrustId" Type="Int64" Nullable="false" />
+          <Property Name="Secret" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TrustName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="returnUrl" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Tokens" Relationship="AuthQModel.FK_Token_Trust" FromRole="Trust" ToRole="Token" />
+          <NavigationProperty Name="TrustedDomains" Relationship="AuthQModel.FK_TrustedDomain_Trust" FromRole="Trust" ToRole="TrustedDomain" />
+        </EntityType>
+        <EntityType Name="TrustedDomain">
+          <Key>
+            <PropertyRef Name="TrustId" />
+            <PropertyRef Name="Domain" />
+          </Key>
+          <Property Name="TrustId" Type="Int64" Nullable="false" />
+          <Property Name="Domain" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Trust" Relationship="AuthQModel.FK_TrustedDomain_Trust" FromRole="TrustedDomain" ToRole="Trust" />
+        </EntityType>
+        <Association Name="FK_Login_TeamMember">
+          <End Role="TeamMember" Type="AuthQModel.TeamMember" Multiplicity="0..1" />
+          <End Role="Login" Type="AuthQModel.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeamMember">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="TeamProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_Login1">
+          <End Role="Login" Type="AuthQModel.Login" Multiplicity="1" />
+          <End Role="Token" Type="AuthQModel.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_Trust">
+          <End Role="Trust" Type="AuthQModel.Trust" Multiplicity="0..1" />
+          <End Role="Token" Type="AuthQModel.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trust">
+              <PropertyRef Name="TrustId" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="Trust" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrustedDomain_Trust">
+          <End Role="Trust" Type="AuthQModel.Trust" Multiplicity="1" />
+          <End Role="TrustedDomain" Type="AuthQModel.TrustedDomain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trust">
+              <PropertyRef Name="TrustId" />
+            </Principal>
+            <Dependent Role="TrustedDomain">
+              <PropertyRef Name="TrustId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AuthQModelStoreContainer" CdmEntityContainer="AuthQEntities">
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="AuthQModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="TeamProfile" ColumnName="TeamProfile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamMembers">
+            <EntityTypeMapping TypeName="AuthQModel.TeamMember">
+              <MappingFragment StoreEntitySet="TeamMember">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+                <ScalarProperty Name="PhotoURL" ColumnName="PhotoURL" />
+                <ScalarProperty Name="Speciality" ColumnName="Speciality" />
+                <ScalarProperty Name="Motto_id" ColumnName="Motto_id" />
+                <ScalarProperty Name="Group_id" ColumnName="Group_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tokens">
+            <EntityTypeMapping TypeName="AuthQModel.Token">
+              <MappingFragment StoreEntitySet="Token">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+                <ScalarProperty Name="RefreshToken" ColumnName="RefreshToken" />
+                <ScalarProperty Name="Expire" ColumnName="Expire" />
+                <ScalarProperty Name="Trust" ColumnName="Trust" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trusts">
+            <EntityTypeMapping TypeName="AuthQModel.Trust">
+              <MappingFragment StoreEntitySet="Trust">
+                <ScalarProperty Name="TrustId" ColumnName="TrustId" />
+                <ScalarProperty Name="Secret" ColumnName="Secret" />
+                <ScalarProperty Name="TrustName" ColumnName="TrustName" />
+                <ScalarProperty Name="returnUrl" ColumnName="returnUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrustedDomains">
+            <EntityTypeMapping TypeName="AuthQModel.TrustedDomain">
+              <MappingFragment StoreEntitySet="TrustedDomain">
+                <ScalarProperty Name="TrustId" ColumnName="TrustId" />
+                <ScalarProperty Name="Domain" ColumnName="Domain" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

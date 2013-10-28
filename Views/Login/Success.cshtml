@@ -1,0 +1,29 @@
+﻿@using AuthQ.SSO.OAuth
+@model OAuthResponse
+@{
+    ViewBag.Title = "Success";
+}
+
+<div class="login-form">
+    <h2>Welcome @ViewBag.Name!</h2>
+
+    <div class="tick"></div>
+    <p class="redirect-text">We have logged you in successfully. This window will disappear and you will return to your origin.</p>
+
+    <p class="redirect-link">If the window doesn't close itself, please click <a href="#close-window">here</a>.</p>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.cookie('@OAuthConstants.AuthorzationParam', '@Model.AccessToken', { path: '/', expires: @Model.Expires });
+        if (window.localStorage) {
+            window.localStorage.setItem('refresh_token', '@Model.RefreshToken');
+        }
+        $('a').click(doExec);
+        setTimeout(doExec, 4000);
+        function doExec() {
+            window.opener.postMessage([true, '{"AccessToken":"@Model.AccessToken","RefreshToken":"@Model.RefreshToken","Expires":@(Model.Expires - 10)}' ], '*');
+            window.close();
+        }
+    });
+</script>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a127e35826634a6582ff6ebe8684f233" Name="Diagram1">
+        <EntityTypeShape EntityType="AuthQModel.Login" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuthQModel.TeamMember" Width="1.5" PointX="1.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuthQModel.Token" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuthQModel.Trust" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuthQModel.TrustedDomain" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="AuthQModel.FK_Login_TeamMember" ManuallyRouted="false" />
+        <AssociationConnector Association="AuthQModel.FK_Token_Login1" ManuallyRouted="false" />
+        <AssociationConnector Association="AuthQModel.FK_Token_Trust" ManuallyRouted="false" />
+        <AssociationConnector Association="AuthQModel.FK_TrustedDomain_Trust" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

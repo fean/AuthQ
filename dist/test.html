@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dist Test</title>
+    <script src="AuthQ.SSO.js"></script>
+</head>
+<body>
+    <input type="button" value="Login" id="login-button"/>
+    <div id="login-data" style="width: 450px; height: 125px; border: 1px solid black;margin: 40px 5px; padding: 5px;">
+        <p>Expires in <span id="login-expire">0</span> seconds.</p>
+        <p>Access token: <span id="login-access"></span></p>
+        <p>Refresh token: <span id="login-refresh"></span></p>
+    </div>
+    <script type="text/javascript">
+        AuthQ.subscribeHandler('success', function (e) {
+            document.getElementById('login-expire').innerText = e.Expires;
+            document.getElementById('login-access').innerText = e.AccessToken;
+            document.getElementById('login-refresh').innerText = e.RefreshToken;
+        });
+        AuthQ.subscribeHandler('failure', function () {
+            alert('Failed!');
+        });
+        AuthQ.init('40000000');
+        document.getElementById('login-button').onclick = function () {
+            AuthQ.createLogin();
+        };
+    </script>
+</body>
+</html>

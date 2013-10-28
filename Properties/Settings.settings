@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="uniQ.SSO.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TrustId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">40000000</Value>
+    </Setting>
+    <Setting Name="Secret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">281909c210724e1fb44c5403577a7938</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
