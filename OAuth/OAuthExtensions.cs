@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -11,6 +12,12 @@ namespace AuthQ.SSO.OAuth
         {
             var wrapper = new HttpRequestWrapper(request);
             return GetToken(wrapper);
+        }
+
+        public static string GetRawContent(this HttpRequest request)
+        {
+            request.InputStream.Seek(0, SeekOrigin.Begin);
+            return new StreamReader(request.InputStream).ReadToEnd();
         }
 
         public static string GetToken(this HttpRequestBase request)

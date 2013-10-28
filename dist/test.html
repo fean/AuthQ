@@ -5,17 +5,28 @@
     <script src="AuthQ.SSO.js"></script>
 </head>
 <body>
-    <input type="button" value="Login" id="login-button"/>
-    <div id="login-data" style="width: 450px; height: 125px; border: 1px solid black;margin: 40px 5px; padding: 5px;">
+    <input type="button" value="Login" id="login-button" />
+    <div id="login-data" style="width: 450px; height: 125px; border: 1px solid black; margin: 40px 5px; padding: 5px;">
         <p>Expires in <span id="login-expire">0</span> seconds.</p>
         <p>Access token: <span id="login-access"></span></p>
         <p>Refresh token: <span id="login-refresh"></span></p>
+    </div>
+    <div id="user-data" style="width: 450px; height: 160px; border: 1px solid black; margin: 40px 5px; padding: 5px;">
+        <p>ID: <span id="user-id"></span></p>
+        <p>Username: <span id="user-name"></span></p>
+        <p>Full name: <span id="user-full"></span></p>
+        <p>Mail address: <span id="user-mail"></span></p>
     </div>
     <script type="text/javascript">
         AuthQ.onsuccess = function (e) {
             document.getElementById('login-expire').innerText = e.Expires;
             document.getElementById('login-access').innerText = e.AccessToken;
             document.getElementById('login-refresh').innerText = e.RefreshToken;
+            var r = AuthQ.api.user.getProfile();
+            document.getElementById('user-id').innerText = r.ID;
+            document.getElementById('user-name').innerText = r.Username;
+            document.getElementById('user-full').innerText = r.FullName == null ? "none" : r.FullName;
+            document.getElementById('user-mail').innerText = r.MailAddress;
         };
         AuthQ.onfailure = function () {
             alert('Failed!');

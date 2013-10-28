@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AuthQ.SSO.Attributes;
 using AuthQ.SSO.Data;
 using AuthQ.SSO.Models;
 
 namespace AuthQ.SSO.Controllers
 {
+    [CheckOrigin]
     public class ProfileController : Controller
     {
 

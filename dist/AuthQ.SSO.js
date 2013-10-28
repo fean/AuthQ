@@ -69,9 +69,9 @@
             } else {
                 try {
                     if (new Date() > new Date(localStorage.getItem(this._appID + '_expire'))) {
-                        req.open("GET", 'https://sso.solutions-net.nl/oauth/checktoken?type=auth&token=' + localStorage.getItem(this._appID + '_token') + '&trustid=' + this._appID, true);
+                        req.open('GET', 'https://sso.solutions-net.nl/oauth/checktoken?type=auth&token=' + localStorage.getItem(this._appID + '_token') + '&trustid=' + this._appID, true);
                     } else {
-                        req.open("GET", 'https://sso.solutions-net.nl/oauth/refreshtoken?refreshToken=' + localStorage.getItem(this._appID + '_rtoken') + '&trustid=' + this._appID, true);
+                        req.open('GET', 'https://sso.solutions-net.nl/oauth/refreshtoken?refreshToken=' + localStorage.getItem(this._appID + '_rtoken') + '&trustid=' + this._appID, true);
                     }
                     req.onreadystatechange = function () {
                         if (req.readyState == 4) {
@@ -103,11 +103,11 @@
     },
 
     _fireEvent: function (event, state) {
-        if (event.toLowerCase() == "failure") {
+        if (event.toLowerCase() == 'failure') {
             if (!this.onfailure)
                 return null;
             state ? this.onfailure(state) : this.onfailure();
-        } else if (event.toLowerCase() == "success") {
+        } else if (event.toLowerCase() == 'success') {
             if (!this.onsuccess)
                 return null;
             state ? this.onsuccess(state) : this.onsuccess();
@@ -117,7 +117,7 @@
     destroyLogin: function () {
         var req = new XMLHttpRequest();
         if (req) {
-            req.open("GET", "https://sso.solutions-net.nl/oauth/unauthorize", false);
+            req.open('GET', 'https://sso.solutions-net.nl/oauth/unauthorize', false);
             req.send();
             if (JSON.parse(req.responseText).Success) {
                 this._data = undefined;
@@ -141,8 +141,9 @@
                 if (AuthQ.isAuthorized) {
                     var req = new XMLHttpRequest();
                     if (req) {
-                        req.open("POST", "https://sso.solutions-net.nl/Profile", false);
-                        req.send("accessToken=" + this._data.AccessToken);
+                        req.open('POST', 'https://sso.solutions-net.nl/Profile', false);
+                        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                        req.send('accessToken=' + AuthQ._data.AccessToken );
                         if (JSON.parse(req.responseText).Success) {
                             return JSON.parse(req.responseText);
                         }
