@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration.Provider;
 
-namespace AuthQ.SSO.OAuth.Configuration
+namespace AuthiQ.SSO.OAuth.Configuration
 {
     public class OAuthServiceCollection : ProviderCollection
     {

@@ -1,10 +1,10 @@
-﻿@model AuthQ.SSO.Models.LoginModel
+﻿@model AuthiQ.SSO.Models.LoginModel
 @{
     ViewBag.Title = "Login";
 }
 
 @{ Html.EnableClientValidation(); }
-@{ Html.BeginForm("index", "login", FormMethod.Post, new { @class = "login-form" }); }
+@{ Html.BeginForm("Login", "Authentication", FormMethod.Post, new { @class = "login-form" }); }
 
 @if (!String.IsNullOrEmpty(Model.ErrorMessage))
 {

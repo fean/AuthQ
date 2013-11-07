@@ -1,10 +1,10 @@
 ﻿using System.Security.Principal;
 
-namespace AuthQ.SSO.OAuth.Implementations
+namespace AuthiQ.SSO.OAuth.Implementations
 {
-    public class AuthQPrincipal : OAuthPrincipalBase
+    public class AuthiQPrincipal : OAuthPrincipalBase
     {
-        public AuthQPrincipal(IOAuthProvider provider, IIdentity identity)
+        public AuthiQPrincipal(IOAuthProvider provider, IIdentity identity)
             : base(provider, identity)
         { }
 

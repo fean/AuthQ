@@ -2,19 +2,19 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AuthQ.SSO.Attributes;
-using AuthQ.SSO.Data;
-using AuthQ.SSO.Models;
-using AuthQ.SSO.OAuth;
-using AuthQ.SSO.OAuth.Implementations;
+using AuthiQ.SSO.Attributes;
+using AuthiQ.SSO.Data;
+using AuthiQ.SSO.Models;
+using AuthiQ.SSO.OAuth;
+using AuthiQ.SSO.OAuth.Implementations;
 
-namespace AuthQ.SSO.Controllers
+namespace AuthiQ.SSO.Controllers
 {
-    [NoCache]
-    public class LoginController : Controller
+    [NoCache, RequireHttps]
+    public class AuthenticationController : Controller
     {
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Index(string requestToken, string trustid)
+        public ActionResult Login(string requestToken, string trustid)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace AuthQ.SSO.Controllers
                 if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                 {
                     var tokendata = Request.GetToken();
-                    var token = new AuthQEntities().Tokens.FirstOrDefault(t => t.AccessToken == tokendata);
+                    var token = new Entities().Tokens.FirstOrDefault(t => t.AccessToken == tokendata);
 
                     if (token == null)
                         return View(new LoginModel
@@ -90,7 +90,7 @@ namespace AuthQ.SSO.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string requestToken, string challenge, string username, string password, bool? rememberMe, long trustid)
+        public ActionResult Login(string requestToken, string challenge, string username, string password, bool? rememberMe, long trustid)
         {
             var accessResponse = OAuthServiceBase.Instance.AccessToken(requestToken, trustid, challenge, "User", username, password.ToHMAC(requestToken), rememberMe.HasValue && rememberMe.Value);
 
@@ -109,7 +109,7 @@ namespace AuthQ.SSO.Controllers
                 });
             }
 
-            var token = new AuthQEntities().Tokens.FirstOrDefault(t => t.AccessToken == accessResponse.AccessToken);
+            var token = new Entities().Tokens.FirstOrDefault(t => t.AccessToken == accessResponse.AccessToken);
 
             ViewBag.Name = token.Login.TeamMember != null
                                    ? token.Login.TeamMember.Name
@@ -121,8 +121,8 @@ namespace AuthQ.SSO.Controllers
         private string ComputeChallenge(string trust, string token)
         {
             var T = Convert.ToInt64(trust);
-            var S = new AuthQEntities().Trusts.FirstOrDefault(t => t.TrustId == T).Secret;
-            if (AuthQService.RequestTokens[token].Value != T)
+            var S = new Entities().Trusts.FirstOrDefault(t => t.TrustId == T).Secret;
+            if (AuthiQService.RequestTokens[token].Value != T)
                 throw new HttpRequestValidationException();
             return token.ToHMAC(S);
         }

@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AuthQ.SSO</RootNamespace>
-    <AssemblyName>AuthQ.SSO</AssemblyName>
+    <RootNamespace>AuthiQ.SSO</RootNamespace>
+    <AssemblyName>AuthiQ.SSO</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <FileUpgradeFlags>
@@ -48,10 +48,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.0.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>packages\EntityFramework.6.0.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\Libraries\Newtonsoft\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -100,37 +103,37 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OAuthController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Data\AuthQModel.Context.cs">
+    <Compile Include="Controllers\SiteController.cs" />
+    <Compile Include="Data\AuthiQModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AuthQModel.Context.tt</DependentUpon>
+      <DependentUpon>AuthiQModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\AuthQModel.cs">
+    <Compile Include="Data\AuthiQModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AuthQModel.tt</DependentUpon>
+      <DependentUpon>AuthiQModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\AuthQModel.Designer.cs">
+    <Compile Include="Data\AuthiQModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AuthQModel.edmx</DependentUpon>
+      <DependentUpon>AuthiQModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\Login.cs">
-      <DependentUpon>AuthQModel.tt</DependentUpon>
+      <DependentUpon>AuthiQModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\TeamMember.cs">
-      <DependentUpon>AuthQModel.tt</DependentUpon>
+      <DependentUpon>AuthiQModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Token.cs">
-      <DependentUpon>AuthQModel.tt</DependentUpon>
+      <DependentUpon>AuthiQModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Trust.cs">
-      <DependentUpon>AuthQModel.tt</DependentUpon>
+      <DependentUpon>AuthiQModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\TrustedDomain.cs">
-      <DependentUpon>AuthQModel.tt</DependentUpon>
+      <DependentUpon>AuthiQModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Debug\CallTracer.cs" />
     <Compile Include="Json\HttpRequestExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -164,35 +167,37 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\DeveloperController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\accept.png" />
     <Content Include="Content\Images\header-object-dark.png" />
     <Content Include="Content\Images\loader.gif" />
-    <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="dist\test.html" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Authentication.css" />
+    <Content Include="dist\index.html" />
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
-    <Content Include="dist\AuthQ.SSO.js" />
-    <EntityDeploy Include="Data\AuthQModel.edmx">
+    <Content Include="dist\AuthiQ.SSO.js" />
+    <EntityDeploy Include="Data\AuthiQModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AuthQModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>AuthiQModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Data\AuthQModel.Context.tt">
+    <Content Include="Data\AuthiQModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AuthQModel.edmx</DependentUpon>
-      <LastGenOutput>AuthQModel.Context.cs</LastGenOutput>
+      <DependentUpon>AuthiQModel.edmx</DependentUpon>
+      <LastGenOutput>AuthiQModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Data\AuthQModel.edmx.diagram">
-      <DependentUpon>AuthQModel.edmx</DependentUpon>
+    <Content Include="Data\AuthiQModel.edmx.diagram">
+      <DependentUpon>AuthiQModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Data\AuthQModel.tt">
+    <Content Include="Data\AuthiQModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AuthQModel.edmx</DependentUpon>
-      <LastGenOutput>AuthQModel.cs</LastGenOutput>
+      <DependentUpon>AuthiQModel.edmx</DependentUpon>
+      <LastGenOutput>AuthiQModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\FTP.pubxml">
       <SubType>Designer</SubType>
@@ -211,15 +216,21 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Authentication\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout_login.cshtml" />
+    <Content Include="Views\Site\Index.cshtml" />
+    <Content Include="Views\Site\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout_site.cshtml" />
+    <Content Include="Views\Shared\SiteMenu.cshtml" />
+    <Content Include="Views\Developer\JSDemonstration.cshtml" />
+    <Content Include="Views\Developer\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Authentication\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Login\Success.cshtml" />
+    <Content Include="Views\Authentication\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -227,7 +238,9 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Debug\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

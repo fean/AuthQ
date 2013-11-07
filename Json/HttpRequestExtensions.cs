@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Web;
 
-namespace AuthQ.SSO.Json
+namespace AuthiQ.SSO.Json
 {
     public static class HttpRequestExtensions
     {

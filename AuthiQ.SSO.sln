@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthQ.SSO", "AuthQ.SSO.csproj", "{1587C29F-BDE6-455F-96AB-D440BE11FED1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthiQ.SSO", "AuthiQ.SSO.csproj", "{1587C29F-BDE6-455F-96AB-D440BE11FED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

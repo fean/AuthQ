@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace AuthQ.SSO
+namespace AuthiQ.SSO
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -18,12 +18,17 @@ namespace AuthQ.SSO
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Developer-JavaScript", // Route name
+                "Developer/JavaScript/Demonstration", // URL with parameters
+                new { controller = "Developer", action = "Demonstration", type = "js" } // Parameter defaults
+                , new string[] { "AuthiQ.SSO.Controllers" }
+            );
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Login", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-                , new string[] {"AuthQ.SSO.Controllers"}
+                new { controller = "Site", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                , new string[] { "AuthiQ.SSO.Controllers" }
             );
-
         }
 
         protected void Application_Start()

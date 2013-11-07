@@ -7,22 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AuthQ.SSO.Data
+namespace AuthiQ.SSO.Data
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Token
     {
-        public Token() {}
+
+        public Token() { }
 
         public Token(Login login, Trust trust)
         {
             AccessToken = Guid.NewGuid().ToString("N");
             Expire = DateTime.Now.AddMinutes(1440);
-            Login = login;
-            Trust1 = trust;
             RefreshToken = Guid.NewGuid().ToString("N");
+
+            Trust1 = trust;
+            Login = login;
         }
 
         public int Id { get; set; }
@@ -30,7 +32,7 @@ namespace AuthQ.SSO.Data
         public string RefreshToken { get; set; }
         public System.DateTime Expire { get; set; }
         public Nullable<long> Trust { get; set; }
-    
+
         public virtual Login Login { get; set; }
         public virtual Trust Trust1 { get; set; }
     }

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Security.Principal;
 
-namespace AuthQ.SSO.OAuth
+namespace AuthiQ.SSO.OAuth
 {
     /// <summary>
     /// Represents a user identity authenticated using OAuth authentication.

@@ -3,7 +3,7 @@ using System.Configuration.Provider;
 using System.Security.Principal;
 using System.Web;
 
-namespace AuthQ.SSO.OAuth
+namespace AuthiQ.SSO.OAuth
 {
     public interface IOAuthProvider
     {

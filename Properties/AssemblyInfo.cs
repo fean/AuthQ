@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AuthQ.SSO")]
+[assembly: AssemblyTitle("AuthiQ.SSO")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AuthQ Group")]
-[assembly: AssemblyProduct("AuthQ SSO Service")]
-[assembly: AssemblyCopyright("Copyright © AuthQ Group 2013")]
+[assembly: AssemblyCompany("AuthiQ Group")]
+[assembly: AssemblyProduct("AuthiQ SSO Service")]
+[assembly: AssemblyCopyright("Copyright © AuthiQ Group 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

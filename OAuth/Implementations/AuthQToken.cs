@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace AuthQ.SSO.OAuth.Implementations
+namespace AuthiQ.SSO.OAuth.Implementations
 {
-    public class AuthQToken
+    public class AuthiQToken
     {
-        public AuthQToken(string name)
+        public AuthiQToken(string name)
         {
             AccessToken = Guid.NewGuid().ToString("N");
             Expire = DateTime.Now.AddMinutes(15);

@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace AuthQ.SSO.OAuth
+namespace AuthiQ.SSO.OAuth
 {
     public static class OAuthExtensions
     {

@@ -1,0 +1,32 @@
+﻿<header>
+    <div class="logo-bar"></div>
+    <nav class="site-menu">
+        <ul class="menu-items">
+            <li class="@if (ViewBag.Menu == "Home") { Write("active"); }"><a class="menu-link" href="/">Home</a></li>
+                <li class="@if (ViewBag.Menu == "Developer") { Write("active"); }">
+                Developers 
+                <div class="dev-subnav">
+                    <div class="column">
+                        <h3 class="js">JavaScript SDK</h3>
+                        <ul>
+                            <li><a class="sub-menu-link" href="/Developer/JavaScript/Demonstration">Demonstration Page</a></li>
+                            <li>Documentation</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="php">PHP SDK</h3>
+                        <ul>
+                            <li>To be released!</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3 class="net">.Net SDK</h3>
+                        <ul>
+                            <li>To be released!</li>
+                        </ul>
+                    </div>
+                </div>
+            </>
+        </ul>
+    </nav>
+</header>

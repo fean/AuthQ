@@ -1,0 +1,190 @@
+body {
+    font-size: 75%;
+    font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
+    color: #232323;
+    background: url(https://leonardbreitkopf.me/wp-content/themes/radioos/style/img/bg-body.jpg) repeat;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Styles for login panel
+-----------------------------------------------------------*/
+
+.login-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 300px;
+    margin-left: -250px;
+    margin-top: -150px;
+    padding: 4px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    -moz-box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.25);
+}
+
+input[type="text"], input[type="password"] {
+    color: #292929;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 4px;
+    width: 250px;
+    height: 30px;
+    padding: 5px 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 10px 0;
+}
+
+label {
+    color: #292929;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+h2 {
+    width: 100%;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+div.button {
+    width: 100px;
+    height: 38px;
+    cursor: pointer;
+    border: none;
+    margin: 17px 0 0 375px;
+    padding: 1px 0;
+    background-color: #F35757;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+    div.button:hover {
+        background-color: #d74a1f;
+    }
+
+    div.button p {
+        text-align: center;
+        color: #ffffff;
+        font-size: 14px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+.input-wrapper {
+    width: 400px;
+    height: 150px;
+    margin-left: 50px;
+    margin-top: 22px;
+}
+
+.loader-backpanel {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 65px;
+    height: 65px;
+    margin-top: -32px;
+    margin-left: -32px;
+}
+
+.error {
+    padding: 8px 35px 8px 14px;
+    margin: -50px 0 33px 25px;
+    width: 400px;
+    background-color: #f2dede;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid #eed3d7;
+    border-radius: 4px;
+    color: #b94a48;
+}
+
+.tick {
+    width: 64px;
+    height: 64px;
+    float: left;
+    background: url(/Content/Images/accept.png);
+    margin: 45px 41px;
+}
+
+.redirect-text {
+    margin-top: 73px;
+    padding-right: 50px;
+    margin-bottom: 73px;
+}
+
+.redirect-link {
+    text-align: center;
+}
+

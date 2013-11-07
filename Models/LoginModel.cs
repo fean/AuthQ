@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AuthQ.SSO.Models
+namespace AuthiQ.SSO.Models
 {
     public class LoginModel
     {

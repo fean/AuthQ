@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using AuthQ.SSO.Data;
+using AuthiQ.SSO.Data;
 
-namespace AuthQ.SSO.Attributes
+namespace AuthiQ.SSO.Attributes
 {
     public class CheckOriginAttribute : ActionFilterAttribute
     {
@@ -15,7 +15,7 @@ namespace AuthQ.SSO.Attributes
             {
                 if (long.TryParse(filterContext.HttpContext.Request.QueryString["trustid"], out trust))
                 {
-                    var T = new AuthQEntities().Trusts.FirstOrDefault(t => t.TrustId == trust)
+                    var T = new Entities().Trusts.FirstOrDefault(t => t.TrustId == trust)
                                                .TrustedDomains.FirstOrDefault(d => d.Domain == origin);
                     if (T != null)
                         filterContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", T.Domain);
@@ -27,7 +27,7 @@ namespace AuthQ.SSO.Attributes
                         var token = string.IsNullOrEmpty(filterContext.HttpContext.Request.QueryString["accessToken"])
                                         ? filterContext.HttpContext.Request.Form["accessToken"]
                                         : filterContext.HttpContext.Request.QueryString["accessToken"];
-                        using (var c = new AuthQEntities())
+                        using (var c = new Entities())
                         {
                             var T = c.Tokens.FirstOrDefault(t => t.AccessToken == token)
                             .Trust1.TrustedDomains.FirstOrDefault(d => d.Domain == origin);

@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AuthQ.SSO.Attributes;
-using AuthQ.SSO.Data;
-using AuthQ.SSO.Models;
+using AuthiQ.SSO.Attributes;
+using AuthiQ.SSO.Data;
+using AuthiQ.SSO.Models;
 
-namespace AuthQ.SSO.Controllers
+namespace AuthiQ.SSO.Controllers
 {
-    [CheckOrigin]
+    [CheckOrigin, RequireHttps]
     public class ProfileController : Controller
     {
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Index(string accessToken)
         {
-            using (var c = new AuthQEntities())
+            using (var c = new Entities())
             {
                 var user = c.Tokens.FirstOrDefault(t => t.AccessToken == accessToken);
                 if (user == null)

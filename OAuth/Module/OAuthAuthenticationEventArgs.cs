@@ -2,7 +2,7 @@
 using System.Security.Principal;
 using System.Web;
 
-namespace AuthQ.SSO.OAuth.Module
+namespace AuthiQ.SSO.OAuth.Module
 {
     /// <summary>
     /// Represents the method that handles the OAuthAuthentication_OnAuthenticate event of a 

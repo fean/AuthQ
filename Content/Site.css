@@ -1,190 +1,124 @@
-body {
+﻿body {
     font-size: 75%;
     font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
     color: #232323;
     background: url(https://leonardbreitkopf.me/wp-content/themes/radioos/style/img/bg-body.jpg) repeat;
+    margin: 0;
+    padding: 0;
 }
 
-/* Styles for basic forms
------------------------------------------------------------*/
-
-fieldset {
-    border: 1px solid #ddd;
-    padding: 0 1.4em 1.4em 1.4em;
-    margin: 0 0 1.5em 0;
+ul, ol {
+    list-style: none;
 }
 
-legend {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-textarea {
-    min-height: 75px;
-}
-
-.editor-label {
-    margin: 1em 0 0 0;
-}
-
-.editor-field {
-    margin: 0.5em 0 0 0;
-}
-
-
-/* Styles for validation helpers
------------------------------------------------------------*/
-.field-validation-error {
-    color: #ff0000;
-}
-
-.field-validation-valid {
-    display: none;
-}
-
-.input-validation-error {
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
-}
-
-.validation-summary-errors {
-    font-weight: bold;
-    color: #ff0000;
-}
-
-.validation-summary-valid {
-    display: none;
-}
-
-/* Styles for login panel
------------------------------------------------------------*/
-
-.login-form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 500px;
-    height: 300px;
-    margin-left: -250px;
-    margin-top: -150px;
-    padding: 4px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 4px;
-    -moz-box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.25);
-    -webkit-box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.25);
-    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.25);
-}
-
-input[type="text"], input[type="password"] {
-    color: #292929;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-    background-color: #fff;
-    border: 1px solid #d7d7d7;
-    border-radius: 4px;
-    width: 250px;
-    height: 30px;
-    padding: 5px 15px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    margin: 10px 0;
-}
-
-label {
-    color: #292929;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-}
-
-h2 {
+.logo-bar {
     width: 100%;
-    margin-top: 15px;
-    padding-bottom: 15px;
-    text-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    height: 180px;
 }
 
-div.button {
-    width: 100px;
-    height: 38px;
-    cursor: pointer;
-    border: none;
-    margin: 17px 0 0 375px;
-    padding: 1px 0;
-    background-color: #F35757;
-    border-radius: 4px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+.site-menu {
+    height: 60px;
+    width: 100%;
+    background: #262626;
+    font-size: 20px;
+    clear: both;
 }
 
-    div.button:hover {
-        background-color: #d74a1f;
+a.menu-link {
+    color: white;
+    text-decoration: none;
+}
+
+a.sub-menu-link {
+    color: white;
+    text-decoration: none;
+    -webkit-transition: color ease-in-out 200ms;
+    -moz-transition: color ease-in-out 200ms;
+    -ms-transition: color ease-in-out 200ms;
+    -o-transition: color ease-in-out 200ms;
+    transition: color ease-in-out 200ms;
+}
+
+    a.sub-menu-link:hover {
+        color: #16c4ff;
     }
 
-    div.button p {
-        text-align: center;
-        color: #ffffff;
-        font-size: 14px;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-weight: bold;
-        margin-top: 10px;
-    }
-
-.input-wrapper {
-    width: 400px;
-    height: 150px;
-    margin-left: 50px;
-    margin-top: 22px;
-}
-
-.loader-backpanel {
-    position: absolute;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.6);
-}
-
-.loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 65px;
-    height: 65px;
-    margin-top: -32px;
-    margin-left: -32px;
-}
-
-.error {
-    padding: 8px 35px 8px 14px;
-    margin: -50px 0 33px 25px;
-    width: 400px;
-    background-color: #f2dede;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-    border: 1px solid #eed3d7;
-    border-radius: 4px;
-    color: #b94a48;
-}
-
-.tick {
-    width: 64px;
-    height: 64px;
+.menu-items {
     float: left;
-    background: url(/Content/Images/accept.png);
-    margin: 45px 41px;
+    height: 60px;
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
 }
 
-.redirect-text {
-    margin-top: 73px;
-    padding-right: 50px;
-    margin-bottom: 73px;
+.menu-items .active {
+    height: 56px;
+    background-color: black;
+    border-bottom: 4px solid #16c4ff;
 }
 
-.redirect-link {
-    text-align: center;
+.menu-items > li {
+    display: inline-block;
+    color: white;
+    padding: 0px 15px;
+    margin: 0px;
+    -webkit-transition: background-color ease-in-out 200ms;
+    -moz-transition: background-color ease-in-out 200ms;
+    -ms-transition: background-color ease-in-out 200ms;
+    -o-transition: background-color ease-in-out 200ms;
+    transition: background-color ease-in-out 200ms;
 }
 
+    .menu-items > li:hover {
+        background-color: black;
+    }
+
+    .menu-items > li .dev-subnav {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        padding: 39px 0 39px 106px;
+        z-index: 999;
+        display: none;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    .menu-items > li:hover .dev-subnav {
+        display: block;
+    }
+
+    .menu-items > li .dev-subnav .column {
+        width: 250px;
+        margin-right: 30px;
+        float: left;
+        min-height: 200px;
+    }
+
+        .menu-items > li .dev-subnav .column h3 {
+            color: white;
+            line-height: 22px;
+            padding-bottom: 6.5px;
+            margin-bottom: 6.5px;
+            font-weight: 500;
+            border-bottom: 3px solid white;
+        }
+
+            .menu-items > li .dev-subnav .column h3.js {
+                border-bottom-color: #f1da4e;
+            }
+
+            .menu-items > li .dev-subnav .column h3.php {
+                border-bottom-color: #6c7eb7;
+            }
+
+            .menu-items > li .dev-subnav .column h3.net {
+                border-bottom-color: #672177;
+            }
+
+        .menu-items > li .dev-subnav .column ul {
+            padding: 0;
+        }
+
+            .menu-items > li .dev-subnav .column ul > li {
+                font-size: 85%;
+            }

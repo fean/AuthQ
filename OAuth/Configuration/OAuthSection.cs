@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace AuthQ.SSO.OAuth.Configuration
+namespace AuthiQ.SSO.OAuth.Configuration
 {
     public class OAuthSection : ConfigurationSection
     {

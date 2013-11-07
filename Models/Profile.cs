@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace AuthQ.SSO.Models
+namespace AuthiQ.SSO.Models
 {
     [DataContract(Name = "profile")]
     [JsonObject(MemberSerialization.OptIn)]

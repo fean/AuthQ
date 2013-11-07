@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace AuthQ.SSO.OAuth
+namespace AuthiQ.SSO.OAuth
 {
     [DataContract(Name = "oauthResponse")]
     [JsonObject(MemberSerialization.OptIn)]

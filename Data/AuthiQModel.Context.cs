@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AuthQ.SSO.Data
+namespace AuthiQ.SSO.Data
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AuthQEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public AuthQEntities()
-            : base("name=AuthQEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

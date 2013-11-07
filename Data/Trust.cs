@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AuthQ.SSO.Data
+namespace AuthiQ.SSO.Data
 {
     using System;
     using System.Collections.Generic;

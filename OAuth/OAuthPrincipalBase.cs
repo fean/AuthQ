@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.Principal;
 
-namespace AuthQ.SSO.OAuth
+namespace AuthiQ.SSO.OAuth
 {
     /// <summary>
     /// Represents an OAuth authenticated principal.

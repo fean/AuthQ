@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AuthQ.SSO.Data;
+using AuthiQ.SSO.Data;
 
-namespace AuthQ.SSO.OAuth.Implementations
+namespace AuthiQ.SSO.OAuth.Implementations
 {
-    public class AuthQService : OAuthServiceBase
+    public class AuthiQService : OAuthServiceBase
     {
-        static AuthQService()
+        static AuthiQService()
         {
             RequestTokens = new Dictionary<string, KeyValuePair<DateTime, long>>();
         }
@@ -24,7 +24,7 @@ namespace AuthQ.SSO.OAuth.Implementations
                         Error = "Invalid Trust ID."
                     };
 
-            var trust = new AuthQEntities().Trusts.FirstOrDefault(t => t.TrustId == trustlong);
+            var trust = new Entities().Trusts.FirstOrDefault(t => t.TrustId == trustlong);
 
             if (trust == null)
                 return new OAuthResponse
@@ -72,7 +72,7 @@ namespace AuthQ.SSO.OAuth.Implementations
                     Success = false
                 };
 
-            var context = new AuthQEntities();
+            var context = new Entities();
             var trust = context.Trusts.FirstOrDefault(t => t.TrustId == tokenData.Value);
 
             if (requestToken.ToHMAC(trust.Secret) != challenge)
@@ -106,7 +106,7 @@ namespace AuthQ.SSO.OAuth.Implementations
 
         public override OAuthResponse RefreshToken(string refreshToken, long trustid)
         {
-            using (var c = new AuthQEntities())
+            using (var c = new Entities())
             {
                 var token = c.Tokens.FirstOrDefault(t => t.RefreshToken == refreshToken);
 
@@ -132,7 +132,7 @@ namespace AuthQ.SSO.OAuth.Implementations
             }
         }
 
-        private OAuthResponse CreateAccessToken(Login user, AuthQEntities context, long trust)
+        private OAuthResponse CreateAccessToken(Login user, Entities context, long trust)
         {
             var trust_ = context.Trusts.FirstOrDefault(t => t.TrustId == trust);
             var token = new Token((Login)user, trust_);
@@ -172,7 +172,7 @@ namespace AuthQ.SSO.OAuth.Implementations
             }
             if (type.ToLower() == "auth")
             {
-                var aToken = new AuthQEntities().Tokens.FirstOrDefault(t => t.AccessToken == token);
+                var aToken = new Entities().Tokens.FirstOrDefault(t => t.AccessToken == token);
                 if (aToken == null)
                     return new OAuthResponse
                     {
@@ -197,7 +197,7 @@ namespace AuthQ.SSO.OAuth.Implementations
 
         public override bool UnauthorizeToken(string accessToken)
         {
-            using (var c = new AuthQEntities())
+            using (var c = new Entities())
             {
                 var token = c.Tokens.FirstOrDefault(t => t.AccessToken == accessToken);
 

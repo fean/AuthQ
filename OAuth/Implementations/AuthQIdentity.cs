@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Linq;
-using AuthQ.SSO.Data;
+using AuthiQ.SSO.Data;
 
-namespace AuthQ.SSO.OAuth.Implementations
+namespace AuthiQ.SSO.OAuth.Implementations
 {
-    public class AuthQIdentity : OAuthIdentityBase
+    public class AuthiQIdentity : OAuthIdentityBase
     {
-        public AuthQIdentity(IOAuthProvider provider, string token)
+        public AuthiQIdentity(IOAuthProvider provider, string token)
             : base(provider)
         {
             Token = token;
-            Realm = "AuthQ";
+            Realm = "AuthiQ";
         }
 
         protected override void Load()
         {
-            var token = new AuthQEntities().Tokens.FirstOrDefault(t =>  DateTime.Now > t.Expire && t.AccessToken == Token);
+            var token = new Entities().Tokens.FirstOrDefault(t =>  DateTime.Now > t.Expire && t.AccessToken == Token);
             if (token == null)
                 return;
 

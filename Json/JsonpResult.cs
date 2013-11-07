@@ -3,7 +3,7 @@ using System.Text;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 
-namespace AuthQ.SSO.Json
+namespace AuthiQ.SSO.Json
 {
     public class JsonpResult : JsonResult
     {

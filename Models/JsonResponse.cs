@@ -1,4 +1,4 @@
-﻿namespace AuthQ.SSO.Models
+﻿namespace AuthiQ.SSO.Models
 {
     public class JsonResponse
     {

@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 
-namespace AuthQ.SSO.Attributes
+namespace AuthiQ.SSO.Attributes
 {
     public class NoCacheAttribute : ActionFilterAttribute
     {

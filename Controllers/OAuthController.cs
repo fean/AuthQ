@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Web.Mvc;
-using AuthQ.SSO.Attributes;
-using AuthQ.SSO.Json;
-using AuthQ.SSO.Models;
-using AuthQ.SSO.OAuth;
+using AuthiQ.SSO.Attributes;
+using AuthiQ.SSO.Json;
+using AuthiQ.SSO.Models;
+using AuthiQ.SSO.OAuth;
 
-namespace AuthQ.SSO.Controllers
+namespace AuthiQ.SSO.Controllers
 {
-    [NoCache, CheckOrigin]
+    [NoCache, CheckOrigin, RequireHttps]
     public class OAuthController : Controller
     {
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]

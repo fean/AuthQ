@@ -2,9 +2,9 @@
 using System.Configuration;
 using System.Web;
 using System.Web.Configuration;
-using AuthQ.SSO.OAuth.Configuration;
+using AuthiQ.SSO.OAuth.Configuration;
 
-namespace AuthQ.SSO.OAuth.Module
+namespace AuthiQ.SSO.OAuth.Module
 {
     /// <summary>
     /// Sets the identity of the user for an ASP.NET application when forms 

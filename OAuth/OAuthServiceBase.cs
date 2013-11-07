@@ -1,7 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.Configuration.Provider;
 
-namespace AuthQ.SSO.OAuth
+namespace AuthiQ.SSO.OAuth
 {
     public interface IOAuthService
     {

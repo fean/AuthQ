@@ -1,4 +1,4 @@
-﻿namespace AuthQ.SSO.OAuth
+﻿namespace AuthiQ.SSO.OAuth
 {
     public static class OAuthConstants
     {

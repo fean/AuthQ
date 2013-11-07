@@ -2,23 +2,23 @@
 using System.Security.Principal;
 using System.Web;
 
-namespace AuthQ.SSO.OAuth.Implementations
+namespace AuthiQ.SSO.OAuth.Implementations
 {
-    public class AuthQProvider : OAuthProviderBase
+    public class AuthiQProvider : OAuthProviderBase
     {
         public override IIdentity RetrieveIdentity(HttpContext context)
         {
             var token = context.Request.GetToken();
             return String.IsNullOrEmpty(token)
                 ? null
-                : new AuthQIdentity(this, token);
+                : new AuthiQIdentity(this, token);
         }
 
         public override IPrincipal CreatePrincipal(IIdentity identity)
         {
-            return identity == null || !(identity is AuthQIdentity)
+            return identity == null || !(identity is AuthiQIdentity)
                 ? null
-                : new AuthQPrincipal(this, identity);
+                : new AuthiQPrincipal(this, identity);
         }
     }
 }
