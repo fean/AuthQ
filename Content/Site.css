@@ -1,4 +1,6 @@
 ﻿body {
+    width: 100%;
+    overflow: hidden;
     font-size: 75%;
     font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
     color: #232323;
@@ -11,6 +13,8 @@ ul, ol {
     list-style: none;
 }
 
+/* Menu */
+
 .logo-bar {
     width: 100%;
     height: 180px;
@@ -22,6 +26,16 @@ ul, ol {
     background: #262626;
     font-size: 20px;
     clear: both;
+}
+
+.logo {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    margin-left: -125px;
+    width: 250px;
+    height: 150px;
+    background-image: url(http://placehold.it/250x150&text=Logo+Placeholder);
 }
 
 a.menu-link {
@@ -48,77 +62,161 @@ a.sub-menu-link {
     height: 60px;
     line-height: 60px;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 5px;
 }
 
-.menu-items .active {
-    height: 56px;
-    background-color: black;
-    border-bottom: 4px solid #16c4ff;
-}
-
-.menu-items > li {
-    display: inline-block;
-    color: white;
-    padding: 0px 15px;
-    margin: 0px;
-    -webkit-transition: background-color ease-in-out 200ms;
-    -moz-transition: background-color ease-in-out 200ms;
-    -ms-transition: background-color ease-in-out 200ms;
-    -o-transition: background-color ease-in-out 200ms;
-    transition: background-color ease-in-out 200ms;
-}
-
-    .menu-items > li:hover {
+    .menu-items .active {
+        height: 56px;
         background-color: black;
+        border-bottom: 4px solid #16c4ff;
     }
 
-    .menu-items > li .dev-subnav {
+    .menu-items > li {
+        display: inline-block;
+        color: white;
+        padding: 0px 15px;
+        margin: 0px;
+        -webkit-transition: background-color ease-in-out 200ms;
+        -moz-transition: background-color ease-in-out 200ms;
+        -ms-transition: background-color ease-in-out 200ms;
+        -o-transition: background-color ease-in-out 200ms;
+        transition: background-color ease-in-out 200ms;
+    }
+
+        .menu-items > li:hover {
+            background-color: black;
+        }
+
+/* Account Menu aan de rechterkant */
+.menu-account-picture {
+    width: 60px;
+    height: 60px;
+    float: right;
+    background-image: url(/Content/images/user-placeholder.png);
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.menu-account {
+    height: 60px;
+    line-height: 60px;
+    float: right;
+    background-color: #16c4ff;
+    color: white;
+    padding: 0px 30px;
+    -webkit-transition: background-color ease-in-out 150ms;
+    -moz-transition: background-color ease-in-out 150ms;
+    -ms-transition: background-color ease-in-out 150ms;
+    -o-transition: background-color ease-in-out 150ms;
+    transition: background-color ease-in-out 150ms;
+}
+
+    .menu-account > .triangle {
         position: absolute;
-        width: 100%;
-        left: 0;
-        padding: 39px 0 39px 106px;
-        z-index: 999;
-        display: none;
-        background-color: rgba(0,0,0,0.9);
+        top: 205px;
+        right: 10px;
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 8px solid white;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        -webkit-transition: transform ease-in-out 150ms;
+        -moz-transition: transform ease-in-out 150ms;
+        -ms-transition: transform ease-in-out 150ms;
+        -o-transition: transform ease-in-out 150ms;
+        transition: transform ease-in-out 150ms;
     }
 
-    .menu-items > li:hover .dev-subnav {
+    .menu-account.open {
+        background-color: rgba(19, 152, 196, 0.9);
+    }
+
+        .menu-account.open > .triangle {
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+
+    .menu-account > ul {
+        display: none;
+        width: 100%;
+        padding: 0px 30px;
+        margin: 1px 0px 0px -30px;
+        background-color: rgba(22, 196, 255, 0.9);
+    }
+
+    .menu-account.open > ul {
         display: block;
     }
 
-    .menu-items > li .dev-subnav .column {
-        width: 250px;
-        margin-right: 30px;
-        float: left;
-        min-height: 200px;
+    .menu-account > ul > li {
+        width: 100%;
+        padding: 0px 30px;
+        margin-left: -30px;
+        -webkit-transition: background-color ease-in-out 150ms;
+        -moz-transition: background-color ease-in-out 150ms;
+        -ms-transition: background-color ease-in-out 150ms;
+        -o-transition: background-color ease-in-out 150ms;
+        transition: background-color ease-in-out 150ms;
     }
 
-        .menu-items > li .dev-subnav .column h3 {
-            color: white;
-            line-height: 22px;
-            padding-bottom: 6.5px;
-            margin-bottom: 6.5px;
-            font-weight: 500;
-            border-bottom: 3px solid white;
+        .menu-account > ul > li:hover, .menu-account:hover {
+            background-color: rgba(19, 152, 196, 0.9);
         }
 
-            .menu-items > li .dev-subnav .column h3.js {
-                border-bottom-color: #f1da4e;
-            }
+/* Navigatie sub-menu */
+.menu-items > li .dev-subnav {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    padding: 39px 0 39px 110px;
+    z-index: 999;
+    display: none;
+    background-color: rgba(0,0,0,0.9);
+}
 
-            .menu-items > li .dev-subnav .column h3.php {
-                border-bottom-color: #6c7eb7;
-            }
+.menu-items > li:hover .dev-subnav {
+    display: block;
+}
 
-            .menu-items > li .dev-subnav .column h3.net {
-                border-bottom-color: #672177;
-            }
+.menu-items > li .dev-subnav .column {
+    width: 250px;
+    margin-right: 30px;
+    float: left;
+    min-height: 200px;
+}
 
-        .menu-items > li .dev-subnav .column ul {
-            padding: 0;
+    .menu-items > li .dev-subnav .column h3 {
+        color: white;
+        line-height: 22px;
+        padding-bottom: 6.5px;
+        margin-bottom: 6.5px;
+        font-weight: 500;
+        border-bottom: 3px solid white;
+    }
+
+        .menu-items > li .dev-subnav .column h3.js {
+            border-bottom-color: #f1da4e;
         }
 
-            .menu-items > li .dev-subnav .column ul > li {
-                font-size: 85%;
-            }
+        .menu-items > li .dev-subnav .column h3.php {
+            border-bottom-color: #6c7eb7;
+        }
+
+        .menu-items > li .dev-subnav .column h3.net {
+            border-bottom-color: #672177;
+        }
+
+    .menu-items > li .dev-subnav .column ul {
+        padding: 0;
+    }
+
+        .menu-items > li .dev-subnav .column ul > li {
+            font-size: 85%;
+        }

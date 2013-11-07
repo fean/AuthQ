@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace AuthiQ.SSO.Controllers
 {
-    [RequireHttps]
+    //[RequireHttps]
     public class SiteController : Controller
     {
 

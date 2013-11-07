@@ -9,7 +9,7 @@ using AuthiQ.SSO.Models;
 
 namespace AuthiQ.SSO.Controllers
 {
-    [CheckOrigin, RequireHttps]
+    [CheckOrigin, /*RequireHttps*/]
     public class ProfileController : Controller
     {
 

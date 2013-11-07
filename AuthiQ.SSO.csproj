@@ -173,6 +173,7 @@
     <Content Include="Content\Images\accept.png" />
     <Content Include="Content\Images\header-object-dark.png" />
     <Content Include="Content\Images\loader.gif" />
+    <Content Include="Content\Images\user-placeholder.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Authentication.css" />
@@ -206,6 +207,7 @@
     <Content Include="Scripts\Crypto.js" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -225,6 +227,7 @@
     <Content Include="Views\Shared\SiteMenu.cshtml" />
     <Content Include="Views\Developer\JSDemonstration.cshtml" />
     <Content Include="Views\Developer\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\AccountMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Authentication\Login.cshtml" />
@@ -263,7 +266,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49158</DevelopmentServerPort>
+          <DevelopmentServerPort>50826</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

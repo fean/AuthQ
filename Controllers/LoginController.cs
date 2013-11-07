@@ -10,7 +10,7 @@ using AuthiQ.SSO.OAuth.Implementations;
 
 namespace AuthiQ.SSO.Controllers
 {
-    [NoCache, RequireHttps]
+    [NoCache, /*RequireHttps*/]
     public class AuthenticationController : Controller
     {
         [AcceptVerbs(HttpVerbs.Get)]

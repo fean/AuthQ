@@ -8,7 +8,6 @@ namespace AuthiQ.SSO.Views
 {
     public class DeveloperController : Controller
     {
-
         public ActionResult Demonstration(string type)
         {
             if(type == "js")

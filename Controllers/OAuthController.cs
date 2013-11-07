@@ -7,7 +7,7 @@ using AuthiQ.SSO.OAuth;
 
 namespace AuthiQ.SSO.Controllers
 {
-    [NoCache, CheckOrigin, RequireHttps]
+    [NoCache, CheckOrigin, /*RequireHttps*/]
     public class OAuthController : Controller
     {
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]

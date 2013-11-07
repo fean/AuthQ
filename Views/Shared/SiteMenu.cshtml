@@ -1,5 +1,7 @@
 ﻿<header>
-    <div class="logo-bar"></div>
+    <div class="logo-bar">
+        <div class="logo"></div>
+    </div>
     <nav class="site-menu">
         <ul class="menu-items">
             <li class="@if (ViewBag.Menu == "Home") { Write("active"); }"><a class="menu-link" href="/">Home</a></li>
@@ -28,5 +30,6 @@
                 </div>
             </>
         </ul>
+        @Html.Partial("AccountMenu")
     </nav>
 </header>
