@@ -1,6 +1,4 @@
 ﻿body {
-    width: 100%;
-    overflow: hidden;
     font-size: 75%;
     font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
     color: #232323;
@@ -11,6 +9,11 @@
 
 ul, ol {
     list-style: none;
+}
+
+body, html {
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Menu */
@@ -35,7 +38,7 @@ ul, ol {
     margin-left: -125px;
     width: 250px;
     height: 150px;
-    background-image: url(http://placehold.it/250x150&text=Logo+Placeholder);
+    background-image: url(/Content/images/logo-placeholder.gif);
 }
 
 a.menu-link {
@@ -116,9 +119,9 @@ a.sub-menu-link {
         right: 10px;
         width: 0;
         height: 0;
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-        border-right: 8px solid white;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-right: 6px solid white;
         -webkit-transform: rotate(-90deg);
         -moz-transform: rotate(-90deg);
         -ms-transform: rotate(-90deg);

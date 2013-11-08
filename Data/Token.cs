@@ -11,7 +11,7 @@ namespace AuthiQ.SSO.Data
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Token
     {
 
@@ -32,7 +32,7 @@ namespace AuthiQ.SSO.Data
         public string RefreshToken { get; set; }
         public System.DateTime Expire { get; set; }
         public Nullable<long> Trust { get; set; }
-
+    
         public virtual Login Login { get; set; }
         public virtual Trust Trust1 { get; set; }
     }

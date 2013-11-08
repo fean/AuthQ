@@ -26,6 +26,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -171,8 +172,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\accept.png" />
-    <Content Include="Content\Images\header-object-dark.png" />
     <Content Include="Content\Images\loader.gif" />
+    <Content Include="Content\Images\logo-placeholder.gif" />
     <Content Include="Content\Images\user-placeholder.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
